@@ -3,29 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>SoS Page</title>
+=======
+    <title>Emergency SOS</title>
+>>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
     <link rel="stylesheet" href="../assets/css/sos.css">
 </head>
 <body>
 
     <%- include("partials/header") %>
 
+<<<<<<< HEAD
      <!-- SOS Page -->
      <div id="sos-page" class="page" ">
+=======
+    <!-- SOS Page -->
+    <div id="sos-page" class="page">
+>>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
         <section class="section sos-section">
             <div class="container">
                 <div class="section-title">
                     <h2>Emergency SOS</h2>
+<<<<<<< HEAD
                     <p>Quickly request help during emergencies. Your location will be shared with emergency services.</p>
                 </div>
                 
                 <div class="sos-card">
                     <div class="sos-button" id="sos-emergency">SOS</div>
+=======
+                    <p>Quickly request help during emergencies. Your location will be shared with your emergency contact.</p>
+                </div>
+                
+                <div class="sos-card">
+                    <button class="sos-button" id="sos-emergency">🚨 SOS</button>
+>>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
                     <p>Press the SOS button to send an emergency alert with your current location.</p>
                     
                     <div class="send-message">
                         <h3>Include Additional Information</h3>
+<<<<<<< HEAD
                         <textarea class="message-area" id="sos-message" placeholder="Describe your situation or specific needs..."></textarea>
+=======
+                        <textarea class="message-area" id="sos-message" placeholder="Describe your situation..."></textarea>
+>>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
                         <button class="btn btn-block" id="send-sos-message">Send Message with Location</button>
                     </div>
                 </div>
@@ -33,6 +54,62 @@
         </section>
     </div>
 
+<<<<<<< HEAD
     <%- include("partials/footer.ejs") %>
 </body>
 </html>
+=======
+    <%- include("partials/footer") %>
+
+    <script>
+        document.getElementById("sos-emergency").addEventListener("click", sendSOSAlert);
+document.getElementById("send-sos-message").addEventListener("click", sendSOSAlert);
+
+async function sendSOSAlert() {
+    if (!navigator.geolocation) {
+        alert("⚠️ Geolocation is not supported by your browser.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const message = document.getElementById("sos-message").value || "🚨 Emergency! Need help!";
+        const token = localStorage.getItem("token"); // ✅ Retrieve token
+
+        if (!token) {
+            alert("⚠️ No authentication token found. Please log in again.");
+            window.location.href = "/login"; // Redirect to login
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/sos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`, // ✅ Include token
+                },
+                body: JSON.stringify({ latitude, longitude, message }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("🚨 SOS alert sent successfully!");
+            } else {
+                alert("⚠️ Failed to send SOS alert: " + data.message);
+            }
+        } catch (error) {
+            console.error("❌ Error sending SOS request:", error);
+            alert("❌ An error occurred while sending the SOS request.");
+        }
+    }, () => {
+        alert("⚠️ Unable to retrieve your location.");
+    });
+}
+
+    </script>
+
+</body>
+</html>
+>>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
