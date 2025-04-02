@@ -2,11 +2,8 @@ const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
-<<<<<<< HEAD
-=======
 const sosRoutes = require("./routes/sosRoutes");
 const callRoutes = require("./routes/callRoutes") // <-- Add SOS Route
->>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
@@ -31,11 +28,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/api/auth", authRoutes);
-<<<<<<< HEAD
-=======
 app.use("/api/sos", sosRoutes); // <-- Add this line
 app.use(callRoutes);
->>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
 
 // Render pages
 app.get("/", (req, res) => {
@@ -58,13 +52,10 @@ app.get("/sos", (req,res) =>{
   res.render("sos");
 });
 
-<<<<<<< HEAD
-=======
 app.get("/call", (req, res) => {
   res.render("call");
 });
 
->>>>>>> dba02cfc104640a731511fab05b15625b9e9d3c2
 app.get("/map", (req,res) =>{
   res.render("map");
 });
