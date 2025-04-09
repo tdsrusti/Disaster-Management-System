@@ -155,7 +155,7 @@
                 </form>
 
                 <p class="text-center mt-3">
-                    Don't have an account? <a href="/">Register</a><br>
+                    Don't have an account? <a href="/register">Register</a><br>
                     <a href="/forgotpassword">Forgot Password?</a>
                 </p>
             </div>
@@ -198,7 +198,7 @@
                         flashMessage.classList.remove("d-none");
 
                         setTimeout(() => {
-                            window.location.replace("/home");
+                            window.location.replace("/");
                         }, 1500);
                     } else {
                         flashMessage.className = "alert alert-danger";

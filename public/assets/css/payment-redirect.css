@@ -1,0 +1,73 @@
+.result-card {
+    max-width: 650px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .processing-container {
+    text-align: center;
+    padding: 4rem 1rem;
+  }
+  
+  .spinner-container {
+    margin: 2rem auto;
+  }
+  
+  .spinner {
+    width: 4rem;
+    height: 4rem;
+    border-width: 0.3rem;
+  }
+  
+  .processing-message {
+    margin-top: 2rem;
+    color: #495057;
+  }
+  
+  .processing-subtitle {
+    color: #6c757d;
+    max-width: 500px;
+    margin: 1rem auto;
+  }
+  
+  /* Responsive button group */
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .button-group .btn {
+    padding: 0.5rem 1.5rem;
+  }
+  
+  /* Animation for the spinner on the processing page */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .custom-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 123, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 576px) {
+    .result-card {
+      margin: 1rem;
+    }
+    
+    .success-body, .cancel-body {
+      padding: 1.5rem 1rem;
+    }
+  }

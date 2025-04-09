@@ -1,0 +1,76 @@
+<!-- views/payment-redirect.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Your Donation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="../assets/css/payment-redirect.css" rel="stylesheet">
+</head>
+<body>
+    <div class="processing-container">
+        <div class="spinner-container">
+            <div class="custom-spinner"></div>
+        </div>
+        <h3 class="processing-message">Processing your donation...</h3>
+        <p class="processing-subtitle">Please wait while we connect to our secure payment gateway. Do not close this page.</p>
+    </div>
+
+    <script>
+        // Donation data passed from server
+        const donationData = '<%- JSON.stringify(donationData) %>';
+
+        // Automatically submit to create checkout session
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        firstName: donationData.firstName,
+                        lastName: donationData.lastName,
+                        email: donationData.email,
+                        amount: Number(donationData.amount),
+                        
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                window.location.href = session.url;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.body.innerHTML = `
+                    <div class="container">
+                        <div class="result-card">
+                            <div class="cancel-header">
+                                <h3>Error Processing Payment</h3>
+                            </div>
+                            <div class="cancel-body">
+                                <div class="cancel-icon">
+                                    <i class="bi bi-x-circle"></i>
+                                </div>
+                                <p>There was a problem connecting to our payment gateway.</p>
+                                <p>No charges have been made to your account.</p>
+                                <div class="button-group">
+                                    <a href="/donate" class="btn btn-primary">Return to Donation Page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

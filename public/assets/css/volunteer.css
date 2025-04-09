@@ -1,0 +1,18 @@
+.volunteer-form {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.banner {
+    background-color: #dc3545;
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

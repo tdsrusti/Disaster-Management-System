@@ -1,0 +1,41 @@
+.result-card {
+    max-width: 650px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Success page specific styles */
+  .success-header {
+    background-color: #28a745;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .success-icon {
+    font-size: 4rem;
+    color: #28a745;
+    margin: 1rem 0;
+  }
+  
+  .success-body {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .transaction-info {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .reference-number {
+    font-family: monospace;
+    letter-spacing: 1px;
+    background: #e9ecef;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }

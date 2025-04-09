@@ -63,6 +63,7 @@ User needs help at:
 
         // Send SMS using Twilio
         const response = await sendEmergencySMS(emergencyContact, fullMessage);
+        const response1 = await sendEmergencySMS('+917795969832', fullMessage);
         console.log("📤 Twilio Response:", response);
 
         res.status(200).json({ message: "✅ SOS alert sent successfully!" });
@@ -70,6 +71,8 @@ User needs help at:
         console.error("❌ SOS Error:", error);
         res.status(500).json({ message: "Failed to send SOS alert" });
     }
+
+    
 });
 
 module.exports = router;

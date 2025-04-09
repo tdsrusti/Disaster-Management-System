@@ -1,0 +1,135 @@
+<!-- views/volunteer.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/volunteer.css">
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+
+    <div class="banner">
+        <div class="container">
+            <h1 class="text-center">Volunteer for Disaster Relief</h1>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="volunteer-form">
+                    <h2 class="mb-4 text-center">Register as a Volunteer</h2>
+                    
+                    <form id="volunteerForm" action="/register-volunteer" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Skills & Capabilities (select all that apply)</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="medical" id="skillMedical">
+                                        <label class="form-check-label" for="skillMedical">Medical/First Aid</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="construction" id="skillConstruction">
+                                        <label class="form-check-label" for="skillConstruction">Construction/Repair</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="logistics" id="skillLogistics">
+                                        <label class="form-check-label" for="skillLogistics">Logistics/Transportation</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="cooking" id="skillCooking">
+                                        <label class="form-check-label" for="skillCooking">Cooking/Food Distribution</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="language" id="skillLanguage">
+                                        <label class="form-check-label" for="skillLanguage">Language Translation</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="skills" value="other" id="skillOther">
+                                        <label class="form-check-label" for="skillOther">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="availability" class="form-label">Availability</label>
+                            <select class="form-select" id="availability" name="availability" required>
+                                <option value="" selected disabled>Choose your availability</option>
+                                <option value="weekdays">Weekdays</option>
+                                <option value="weekends">Weekends</option>
+                                <option value="evenings">Evenings only</option>
+                                <option value="full-time">Full-time (1+ weeks)</option>
+                                <option value="on-call">On-call/Emergency basis</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location / Area</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="City, State or Region where you can volunteer" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="previousExperience" class="form-label">Previous Volunteer Experience (optional)</label>
+                            <textarea class="form-control" id="previousExperience" name="previousExperience" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">I understand that submitting this form does not guarantee placement and that additional screening may be required</label>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger btn-lg px-5">Register as Volunteer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('volunteerForm').addEventListener('submit', function(event) {
+            const checkboxes = this.querySelectorAll('input[name="skills"]:checked');
+            
+            if (checkboxes.length === 0) {
+                event.preventDefault();
+                alert('Please select at least one skill or capability');
+            }
+        });
+    </script>
+</body>
+</html>
