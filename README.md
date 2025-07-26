@@ -1,1 +1,1 @@
-# Disaster-Management-System
+# DisasterManagement

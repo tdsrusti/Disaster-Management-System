@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Successful</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+   
+    <link href="../assets/css/donation-success.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+
+    <div class="container">
+        <div class="result-card">
+            <div class="success-header">
+                <h3>Thank You for Your Donation!</h3>
+            </div>
+            <div class="success-body">
+                <div class="success-icon">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <h4>Dear <%= donation.firstName %> <%= donation.lastName %>,</h4>
+                <p class="lead">Your donation of $<%= donation.amount %> has been successfully processed.</p>
+                <p>Your contribution will make a real difference in the lives of those affected by this disaster.</p>
+                
+                <div class="transaction-info">
+                    <p>A receipt has been sent to your email: <%= donation.email %></p>
+                    <p>Transaction Reference: <span class="reference-number"><%= donation.stripeSessionId.substring(0, 8) %>...</span></p>
+                </div>
+                
+                <div class="button-group">
+                    <a href="/" class="btn btn-primary">Return to Homepage</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
