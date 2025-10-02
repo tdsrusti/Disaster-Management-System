@@ -1,3 +1,5 @@
+// models/volunteer.js
+// Volunteer Model for handling volunteer registration and information
 const mongoose = require("mongoose");
 
 const volunteerSchema = new mongoose.Schema({

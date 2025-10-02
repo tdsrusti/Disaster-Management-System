@@ -1,3 +1,5 @@
+// routes/authRoutes.js 
+// Authentication Routes for user registration and login
 const express = require("express");
 const { register, login, forgotPassword } = require("../controllers/authController");
 

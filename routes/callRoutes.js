@@ -1,3 +1,5 @@
+// routes/callRoutes.js
+// Call Routes for making emergency calls
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -10,7 +12,7 @@ const client = twilio(
 );
 
 
-const EMERGENCY_NUMBER = ''; //Add sushant number
+const EMERGENCY_NUMBER = process.env.Number; // Replace with the actual emergency number
 const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 
 

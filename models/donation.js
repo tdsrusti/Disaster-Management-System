@@ -1,3 +1,5 @@
+// models/donation.js
+// Donation Model for handling donation records
 const mongoose = require("mongoose");
 
 const donationSchema = new mongoose.Schema({
@@ -11,7 +13,7 @@ const donationSchema = new mongoose.Schema({
     email: { type: String, required: true },
     amount: { type: Number, required: true },
     
-    paymentStatus: { type: String, default: 'pending' },
+    paymentStatus: { type: String, default: 'completed' },
     stripeSessionId: String,
     stripePaymentIntentId: String,
     createdAt: { type: Date, default: Date.now }

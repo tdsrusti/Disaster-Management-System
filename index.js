@@ -1,20 +1,27 @@
+// index.js
+// Main entry point for the Disaster Management application
 const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const sosRoutes = require("./routes/sosRoutes");
 const callRoutes = require("./routes/callRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const authenticate = require("./middleware/authMiddleware");
 const Volunteer = require('./models/volunteer');
 const Donation = require("./models/donation");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const cookieParser = require("cookie-parser"); 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
+  timeout: 120000, 
+});
 
 
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 
 
@@ -24,6 +31,8 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use("/profile", authenticate, profileRoutes);
 
 app.post('/webhook', 
   express.raw({type: 'application/json'}), 

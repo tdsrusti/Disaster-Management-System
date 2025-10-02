@@ -1,3 +1,5 @@
+// models/User.js
+// User Model for handling user data and authentication
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({

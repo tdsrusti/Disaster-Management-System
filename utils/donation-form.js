@@ -1,3 +1,5 @@
+// utils/donation-form.js
+// Donation Form Utility for handling donation submissions and Stripe integration
 document.addEventListener('DOMContentLoaded', function() {
     function setAmount(amount) {
       document.getElementById('customAmount').value = amount;

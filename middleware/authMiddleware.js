@@ -1,20 +1,13 @@
+// middleware/authMiddleware.js
+// Authentication Middleware to protect routes and verify JWT tokens
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 module.exports = (req, res, next) => {
-//   const token = req.header("x-auth-token");
-//   if (!token) return res.status(401).json({ message: "No token, authorization denied" });
 
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     req.user = decoded;
-//     next();
-//   } catch (err) {
-//     res.status(401).json({ message: "Invalid Token" });
-//   }
-// };
     const authHeader = req.header("Authorization");
-
+    
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         console.log("⚠️ No token provided or incorrect format.");
         return res.status(401).json({ message: "No token, authorization denied" });

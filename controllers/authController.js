@@ -1,3 +1,5 @@
+// controllers/authController.js
+// Authentication Controller for handling user registration, login, and password reset
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -17,7 +19,7 @@ exports.register = async (req, res) => {
         user = new User({ name, email, password: hashedPassword, mobile, emermob});
         await user.save();
 
-        res.status(200).json({ message: "Signup successful", redirect: "/home" });
+        res.status(200).json({ message: "Signup successful", redirect: "/" });
     } catch (err) {
         res.status(500).json({ message: "Server Error" });
     }
@@ -36,7 +38,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        res.status(200).json({ message: "Login successful", token, redirect: "/home" });
+        res.status(200).json({ message: "Login successful", token, redirect: "/" });
     } catch (err) {
         res.status(500).json({ message: "Server Error" });
     }
