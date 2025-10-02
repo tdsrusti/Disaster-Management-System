@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const authenticate = require("../middleware/authMiddleware");
 const User = require("../models/User");
-const sendEmergencySMS = require("../utils/sendSMS");
+const sendEmergencySMS = require("../utils/sendSms");
 
 router.post("/", authenticate, async (req, res) => {
     try {
@@ -79,4 +79,5 @@ User needs help at:
 });
 
 module.exports = router;
+
 
